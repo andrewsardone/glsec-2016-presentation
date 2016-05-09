@@ -20,7 +20,7 @@ class ViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCellWithIdentifier("Table View Cell") as? TableViewCell) ?? TableViewCell()
-        cell.avatarView.backgroundColor = UIColor.randomColor()
+        cell.avatarView.backgroundColor = fakeTweetData[indexPath.row].avatarBackgroundColor
         cell.nameLabel.text = fakeTweetData[indexPath.row].name
         cell.tweetLabel.text = fakeTweetData[indexPath.row].text
         return cell
@@ -41,6 +41,7 @@ struct FakeTweet {
     let id: String
     let name: String
     let text: String
+    let avatarBackgroundColor: UIColor
 
     static func fetchData() -> [FakeTweet] {
         let path = NSBundle.mainBundle().pathForResource("data", ofType: "json")
@@ -65,6 +66,7 @@ struct FakeTweet {
         id = json["id"] as? String ?? NSUUID().UUIDString
         name = json["name"] as? String ?? "No Name"
         text = json["text"] as? String ?? "No Text"
+        avatarBackgroundColor = UIColor.randomColor()
     }
 }
 
