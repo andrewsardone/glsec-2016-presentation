@@ -19,6 +19,10 @@ class ScrollPerformanceReactNative extends Component {
     // Obviously this is blocking, but this is just a quick demo around scroll
     // performance, not app-launch performance.
     const data = require('./data.json');
+    // Assigning a random color because I didn't include that in our fake tweet
+    // data set ¯\_(ツ)_/¯.
+    data.forEach((fakeTweet) => fakeTweet['avatarBackgroundColor'] = pickRandom(COLORS));
+
     const dataSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
@@ -48,7 +52,7 @@ class ScrollPerformanceReactNative extends Component {
               width: 60,
               height: 60,
               borderRadius: 60/2,
-              backgroundColor: 'red', // TODO: Use random color
+              backgroundColor: rowData['avatarBackgroundColor'],
             }}
           />
           <Text style={[defaultTextTyle, {textAlign: 'center'}]}>Date</Text>
@@ -62,6 +66,25 @@ class ScrollPerformanceReactNative extends Component {
       </View>
     );
   };
+}
+
+const COLORS = [
+  '#000000',
+  '#0000ff',
+  '#a52a2a',
+  '#00ffff',
+  '#a9a9a9',
+  '#808080',
+  '#008000',
+  '#d3d3d3',
+  '#ff00ff',
+  '#ffa500',
+  '#800080',
+  '#ff0000',
+  '#ffff00',
+];
+function pickRandom(array) {
+  return array[Math.floor(Math.random() * array.length)];
 }
 
 AppRegistry.registerComponent('ScrollPerformanceReactNative', () => ScrollPerformanceReactNative);
