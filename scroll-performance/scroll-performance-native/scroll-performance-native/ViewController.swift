@@ -10,10 +10,6 @@ class ViewController: UITableViewController {
         tableView.estimatedRowHeight = 132
     }
 
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fakeTweetData.count
     }
