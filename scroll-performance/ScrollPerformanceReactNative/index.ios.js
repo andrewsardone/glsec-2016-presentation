@@ -7,47 +7,61 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  ListView,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 
 class ScrollPerformanceReactNative extends Component {
+  constructor(props) {
+    super(props);
+    // Obviously this is blocking, but this is just a quick demo around scroll
+    // performance, not app-launch performance.
+    const data = require('./data.json');
+    const dataSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
+
+    this.state = {
+      dataSource: dataSource.cloneWithRows(data),
+    };
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+      />
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  renderRow(rowData) {
+    const defaultTextTyle = {
+      fontSize: 17,
+    };
+    return (
+      <View style={{flexDirection: 'row', padding: 8, overflow: 'hidden'}}>
+        <View>
+          <View style={{
+              width: 60,
+              height: 60,
+              borderRadius: 60/2,
+              backgroundColor: 'red', // TODO: Use random color
+            }}
+          />
+          <Text style={[defaultTextTyle, {textAlign: 'center'}]}>Date</Text>
+        </View>
+        <View style={{flex: 1, paddingLeft: 8}}>
+          <Text style={defaultTextTyle}>{rowData['name']}</Text>
+          <Text style={defaultTextTyle}>
+            {rowData['text']}
+          </Text>
+        </View>
+      </View>
+    );
+  };
+}
 
 AppRegistry.registerComponent('ScrollPerformanceReactNative', () => ScrollPerformanceReactNative);
