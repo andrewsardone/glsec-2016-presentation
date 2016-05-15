@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -16,12 +10,8 @@ import {
 class ScrollPerformanceReactNative extends Component {
   constructor(props) {
     super(props);
-    // Obviously this is blocking, but this is just a quick demo around scroll
-    // performance, not app-launch performance.
-    const data = require('./data.json');
-    // Assigning a random color because I didn't include that in our fake tweet
-    // data set ¯\_(ツ)_/¯.
-    data.forEach((fakeTweet) => fakeTweet['avatarBackgroundColor'] = pickRandom(COLORS));
+
+    const data = fetchData();
 
     const dataSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
@@ -85,6 +75,15 @@ const COLORS = [
 ];
 function pickRandom(array) {
   return array[Math.floor(Math.random() * array.length)];
+}
+
+function fetchData() {
+  // performance, not app-launch performance.
+  const data = require('./data.json');
+  // Assigning a random color because I didn't include that in our fake tweet
+  // data set ¯\_(ツ)_/¯.
+  data.forEach((fakeTweet) => fakeTweet['avatarBackgroundColor'] = pickRandom(COLORS));
+  return data;
 }
 
 AppRegistry.registerComponent('ScrollPerformanceReactNative', () => ScrollPerformanceReactNative);
