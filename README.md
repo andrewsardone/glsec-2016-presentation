@@ -2,11 +2,11 @@
 
 This is the companion repository for my 2016-05-16 talk at the [2016 _Great
 Lakes Software Excellence Conference_][glsec]. The slides can be found
-[here][pdf] and on [Speaker Deck][sd] (TODO).
+[here][pdf] and on [Speaker Deck][sd].
 
 [glsec]: http://glsec.softwaregr.org/
 [pdf]: /slides.pdf
-[sd]: #
+[sd]: https://speakerdeck.com/andrewsardone/engineering-better-apps-with-react-native
 
 ## Demo Code
 
