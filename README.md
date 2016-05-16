@@ -8,6 +8,9 @@ Lakes Software Excellence Conference_][glsec]. The slides can be found
 [pdf]: /slides.pdf
 [sd]: https://speakerdeck.com/andrewsardone/engineering-better-apps-with-react-native
 
+<img src="https://www.dropbox.com/s/maeez7sk8up7bxp/Photo%20May%2016%2C%2013%2020%2006.jpg?raw=1" width=300 />
+[Sketch notes](https://twitter.com/diiq/status/732224698415730688) by [Sam Bleckley](https://twitter.com/diiq)
+
 ## Demo Code
 
 The [`scroll-performance` code][sp] demonstrates a simple Twitter-like list
